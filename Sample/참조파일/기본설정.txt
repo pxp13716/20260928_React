@@ -1,0 +1,68 @@
+1. 강사
+  신성진
+  pxp13716@gmail.com
+  http://pxp13716.cafe24app.com/react
+
+2. 공유
+  https://github.com/pxp13716/20260928_React
+  
+
+3. 참조 사이트
+  Node                https://nodejs.org/ko/
+  VSCode              https://code.visualstudio.com/
+
+  JavaScript          https://developer.mozilla.org/ko/docs/Web/JavaScript
+  TypeScript          https://www.typescriptlang.org/ko/
+  Vite                https://ko.vitejs.dev/guide/
+
+  Axios               https://yamoo9.github.io/axios/
+
+  NPM:                https://www.npmjs.com/
+  CDN                 https://www.jsdelivr.com/               
+
+  React               https://ko.legacy.reactjs.org/
+  Redux               https://ko.redux.js.org/introduction/getting-started
+    
+  전개 연산자           https://inpa.tistory.com/entry/JS-%F0%9F%93%9A-%EC%A0%84%EA%B0%9C-%EC%97%B0%EC%82%B0%EC%9E%90Spread-%EB%AC%B8%EB%B2%95
+  구조분해할당          https://inpa.tistory.com/entry/JS-%F0%9F%93%9A-%EB%B9%84%EA%B5%AC%EC%A1%B0%ED%99%94%EA%B5%AC%EC%A1%B0%EB%B6%84%ED%95%B4-%ED%95%A0%EB%8B%B9
+  화살표 함수           https://inpa.tistory.com/entry/JS-%F0%9F%93%9A-%EC%9E%90%EB%B0%94%EC%8A%A4%ED%81%AC%EB%A6%BD%ED%8A%B8-%ED%99%94%EC%82%B4%ED%91%9C-%ED%95%A8%EC%88%98-%EC%A0%95%EB%A6%AC
+  promise             https://inpa.tistory.com/entry/JS-%F0%9F%93%9A-%EB%B9%84%EB%8F%99%EA%B8%B0%EC%B2%98%EB%A6%AC-Promise
+  axios               https://inpa.tistory.com/entry/AXIOS-%F0%9F%93%9A-%EC%84%A4%EC%B9%98-%EC%82%AC%EC%9A%A9
+  
+
+
+4. VSCode 기본 설정: File - Preferences - settings
+  1] Auto Save
+    => onFocusChange
+  2] Tab Size
+    => 2
+  3] Default Formatter ( 검색창에 formatter로 검색)
+    => TypeScript And JavaScript...
+    => Prettier 플러그인 설치 후는 pretter로 설정
+  4] Format on Save 
+    => check
+  5] Compact Folders
+    => check 해제
+
+
+5. powershell에서 npm 명령 사용
+  c:\> Set-ExecutionPolicy RemoteSigned
+    [실행 정책 변경 => Yes]
+  c:\> Get-ExecutionPolicy
+    [RemoteSigned]
+
+
+6. VSCode plugin
+  ES7 React/Redux/GraphQL/React-Native snippets
+  Live Server
+
+  ESLint    
+    => JavaScript 실시간 에러 체크
+
+  Korean Language Pack for Visual Studio Code
+    => ctrl + shift + p에서 language로 검색 
+    => 표시 언어 구성(Confiure Display Language) 선택
+    
+  icon: Material Icon Theme, vscode-icons
+  theme: GitHub Theme, Dracula Theme, Night Owl
+  Auto Rename Tag

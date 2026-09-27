@@ -1,0 +1,23 @@
+1. Terminal 열기
+  contactsvc 폴더를 마우스 오른쪽 클릭 -> Open in Integrated Terminal 선택
+
+2. 설치
+  c:\contactsvc> npm i
+
+3. 서버시작 => pageage.json의 script 참조
+  c:\contactsvc> npm run dev
+
+4. 서버 포트 충돌
+  4.1 서버 종료
+    c:\contactsvc>Ctrl + c
+  
+  4.2 contactsvc/server.js 파일에 15줄 8000번을 다른 번호로 변경
+
+  4.3 서버 재 시작
+    c:\contactsvc> npm run dev
+
+5. 브라우저에서
+  localhost:8000 으로 확인
+
+6. 서버 종료
+  c:\contactsvc>Ctrl + c
