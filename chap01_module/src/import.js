@@ -12,15 +12,23 @@ import * as one from './exportOne.js';
 
 // default import
 // 파일의 export 변수명과는 상관없음. import 파일에서 사용되지 않는 임의의 변수명으로 정의해서 사용
-import two from './exportTwo.js';
+// import two from './exportTwo.js';
+// import { x, y } from './exportTwo.js';
 // console.log(one);
 // console.log(two)
 
 // 반드시 default가 먼저 정의되어야 한다.
+import two, { x, y } from './exportTwo.js';
 
 // 자바스크립트에서 가장 많은 에러
 // undefined[0], undefined.name, undefined(10, 20)
 // null[0], null.name, null(10, 20)
+
+
+// 외부 라이브러리 이용
+// import { $ } from 'jquery'
+
+
 const name = 'Adam';
 const dom = `
   <div>
@@ -39,8 +47,12 @@ const dom = `
     getName: ${two.getName?.()} <br>
     getTotal: ${two.getTotal?.(100, 90)} <br>
     onAvg: ${two.getAvg?.(190, 2)} <br>
-    X: , Y: 
+    X: ${x}, Y: ${y} 
   </div>
 `;
 
+// 콘솔 출력
 console.log(dom);
+
+// 브라우저에 출력
+document.getElementById('app').innerHTML = dom;

@@ -1,0 +1,31 @@
+{
+  "editor.minimap.enabled": false,
+  "files.autoSave": "onFocusChange",
+  "chat.titleBar.signIn.enabled": false,
+  "editor.stickyScroll.enabled": false,
+  "workbench.browser.openLocalhostLinks": false,
+  "editor.tabSize": 2,
+  "editor.defaultFormatter": "vscode.typescript-language-features",
+  // "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "editor.defaultFormatter": "oxc.oxc-vscode",
+  "editor.codeActionsOnSave": {
+    "source.format.oxc": "always", // run formatter first
+    "source.fixAll.oxc": "always", // run lint fixes after
+  },
+  "editor.formatOnSave": true,
+  "terminal.integrated.stickyScroll.enabled": false,
+  "continue.enableConsole": true,
+  "continue.enableQuickActions": true,
+  "chat.disableAIFeatures": true,
+  "git.autofetch": true,
+  "workbench.experimental.share.enabled": true,
+  "claudeCode.preferredLocation": "panel",
+  "workbench.layoutControl.type": "both",
+  "workbench.panel.defaultLocation": "bottom",
+  "editor.fontSize": 18,
+  "explorer.compactFolders": false,
+  "workbench.iconTheme": "material-icon-theme",
+  "workbench.colorTheme": "Dracula Theme",
+  "window.commandCenter": true,
+  "terminal.integrated.fontSize": 18,
+}
