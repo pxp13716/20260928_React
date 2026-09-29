@@ -4,13 +4,21 @@ import A01State from './components/A01State'
 import A02Container from './components/A02Container'
 import A03Container from './components/A03Container'
 import A03DoubleView from './components/A03DoubleView'
+import A04Event from './components/A04Event'
+import A05CreateDOM from './components/A05CreateDOM'
+import A06Hook from './components/A06Hook'
 function App() {
   return (
     <div className="m-3">
       <h1>Chap04 Component</h1>
 
-      <A03DoubleView></A03DoubleView>
+      <A06Hook></A06Hook>
 
+      <A05CreateDOM></A05CreateDOM>
+
+      <A04Event></A04Event>
+
+      <A03DoubleView></A03DoubleView>
       <A03Container></A03Container>
 
       <A02Container></A02Container>
