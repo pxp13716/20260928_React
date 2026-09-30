@@ -5,7 +5,7 @@ React Hook 규칙
 다른 Hook 내부에서 호출 금지: useMemo, useCallback, useEffect 등의 콜백 내부에서 Hook을 호출하면 안된다.
 */
 
-import { useCallback, useEffect, useRef, useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 
 function A06Hook() {
   /*
@@ -20,8 +20,10 @@ function A06Hook() {
   const [data, setData] = useState({
     num: 10,
     str: 'Adam',
+    avg: '',
+    list: [],
   });
-  const [today, setToday] = useState(new Date());
+  const [today, setToday] = useState(new Date().toLocaleString());
 
   /*
   2. useCallback => 함수 자체를 메모이제이션(캐시화)
@@ -42,7 +44,7 @@ function A06Hook() {
   const changeNumber = useCallback((evt) => {
     setData((prev) => {
       // prev가 setter가 변경할 getter의 변경된 현재 값 참조를 주입해 준다
-      return { ...prev, num: evt.target.value };
+      return { ...prev, [evt.target.name]: Number(evt.target.value) };
     });
   }, []);
   const changeString = useCallback((evt) => setData((prev) => {
@@ -66,7 +68,7 @@ function A06Hook() {
   useEffect(() => {
     // 부수효과 => 외부 변수를 변경. ajax을 이용해 data 취득 => 취득한 data로 상태 변경 => 화면 리렌더링
     const timer = setTimeout(() => {
-      setToday(new Date());
+      setToday(new Date().toLocaleString());
     }, 2000);
 
     // clean up 함수 => unMount 시점. 즉 리렌더링 되지 전 시점에 실행 => useEffect
@@ -76,7 +78,13 @@ function A06Hook() {
   }, [data.num]);
 
   useEffect(() => {
-    document.querySelector('input[name="num"]').style.backgroundColor = 'orange';
+
+    // 다른 컴포넌트에 num 필드가 있으면 그 num이 우선 적용될 가능성이 있다
+    // document.querySelector('input[name="num"]').style.backgroundColor = 'orange';
+
+    // 컴포넌트별로 유효한 요소 참조가 된다
+    // console.log(numRef.current)
+    numRef.current.style.backgroundColor = 'orange';
   }, []);
 
   /*
@@ -84,9 +92,15 @@ function A06Hook() {
       값이 변경되도 화면 리렌더링은 하지 않는다. (View에서 사용하는 경우는 없다. VM에서서 값 참조로 사용)
     4. Element 요소의 참조 - useRef(null)
   */
+
+  // 값 유지
   const count = useRef(0);
   const increment = () => count.current++;
   const decrement = () => count.current--;
+
+  // DOM 요소 참조
+  // 연결하고자 하는 요소에 ref={numRef} 형태로 정의
+  const numRef = useRef(null);
 
   /*
     5. useMemo => 함수의 결과값이 메모이제이션. 
@@ -95,6 +109,34 @@ function A06Hook() {
     함수는 매개변수를 가질 수 없다.
     View에서 사용은 프로퍼티 형태로 사용한다 => 매개변수를 가질 수 없는 이유..
   */
+
+  const addList = useCallback(() => {
+    setData((prev) => {
+      // return { ...prev, list: [...prev.list, prev.avg] };
+      return { ...prev, list: prev.list.concat(prev.avg) };
+    })
+  }, []);
+
+  // View에서 함수를 호출 문제점
+  // 화면이 리렌더링(재호출) 될때마다 함수가 재 호출된다
+
+  // useMemo => 작성은 함수. 사용은 일반변수 형태로 사용한다. 즉 호출에서 () 없이 함수명으로만 호출(getter)
+  const average = useMemo(() => {
+    // console.log('average...');
+    if (data.list.length === 0) return 0;
+
+    /*
+      [10, 11, 100]
+      1번째 실행 => (acc = 0, item = 10) => return 10 => 다음 실행시의 acc의 값
+      2번째 실행 => (acc = 10, item = 11) => return 21 => 다음 실행시의 acc의 값
+      2번째 실행 => (acc = 21, item = 100) => return 121 => 다음 실행 값 없음 => 반환 
+    */
+    const total = data.list.reduce((acc, item) => {
+      return acc + item;
+    }, 0);
+    return (total / data.list.length).toFixed(2);
+  }, [data.list])
+
   return (
     <div className="mb-5">
       <h3>A06 Hook</h3>
@@ -107,7 +149,7 @@ function A06Hook() {
 
       <div className="mb-3">
         Num: {data.num}
-        <input type="text" name="num" className="form-control"
+        <input type="number" name="num" className="form-control" min="0" max="10" ref={numRef}
           onChange={changeNumber} value={data.num} />
       </div>
 
@@ -118,14 +160,15 @@ function A06Hook() {
       </div>
 
       <div className="mb-3">
-        Today: {today.toLocaleString()} <br />
+        Today: {today} <br />
       </div>
 
       <div className="mb-3">
-        Avg:
+        Avg: {data.avg} / {data.list.join()} / {average}
         <div className="input-group">
-          <input type="text" name="str" className="form-control" />
-          <button className="btn btn-outline-primary btn-sm">ADD</button>
+          <input type="number" name="avg" className="form-control" min={0} max={100}
+            value={data.avg} onChange={changeNumber} />
+          <button className="btn btn-outline-primary btn-sm" onClick={addList}>ADD</button>
         </div>
       </div>
     </div>

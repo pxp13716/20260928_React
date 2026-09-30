@@ -7,11 +7,19 @@ import A03DoubleView from './components/A03DoubleView'
 import A04Event from './components/A04Event'
 import A05CreateDOM from './components/A05CreateDOM'
 import A06Hook from './components/A06Hook'
+import A07Hook from './components/A07Hook'
+import A08Reducer from './components/A08Reducer'
+import A09Immer from './components/A09Immer'
+
 function App() {
   return (
     <div className="m-3">
       <h1>Chap04 Component</h1>
 
+      <A09Immer></A09Immer>
+
+      <A08Reducer></A08Reducer>
+      <A07Hook></A07Hook>
       <A06Hook></A06Hook>
 
       <A05CreateDOM></A05CreateDOM>
