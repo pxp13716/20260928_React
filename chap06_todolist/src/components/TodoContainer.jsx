@@ -7,6 +7,7 @@ import { makeTodo } from './../config/todo'
 
 const TodoContainer = () => {
   const [todoList, setTodoList] = useState(makeTodo);
+  const cnt = useRef(6);
 
   /*
     // DB에서 넘어온 값(테이블의 값)이 대부분 이 형태이다
@@ -54,11 +55,19 @@ const TodoContainer = () => {
     });
   }, []);
 
+  const addTodo = useCallback((text) => {
+    setTodoList((prev) => {
+      const todo = { id: cnt.current, text, done: false };
+      return prev.concat(todo);
+    })
+    cnt.current += 1;
+  }, []);
+
   return (
     <div>
       <h3>Todo List</h3>
 
-      <TodoForm />
+      <TodoForm addTodo={addTodo} />
       <TodoTable todoList={todoList} updateTodo={updateTodo} deleteTodo={deleteTodo} />
     </div>
   );
