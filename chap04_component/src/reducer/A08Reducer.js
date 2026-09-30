@@ -3,9 +3,11 @@ export const reducerFunc = (state, action) => {
   // console.log(action);
   switch (action.type) {
     case 'A08/CHANGENUMBER':
-      let value = Number(action.payload.value);
-      if (Number.isNaN(value)) value = 0;
-      return { ...state, [action.payload.name]: value };
+      {
+        let value = Number(action.payload.value);
+        if (Number.isNaN(value)) value = 0;
+        return { ...state, [action.payload.name]: value };
+      }
     case 'A08/CHANGESTRING':
       return { ...state, [action.payload.name]: action.payload.value };
     case 'A08/CHANGETODAY':

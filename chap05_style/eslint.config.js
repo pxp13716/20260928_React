@@ -20,7 +20,7 @@ export default defineConfig([
   },
   {
     rules: {
-      "no-unused-vars": "warn",
+      'no-unused-vars': 'warn',
     }
   }
 ])

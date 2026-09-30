@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { useCallback, useState } from "react";
 
 // npm i immer
@@ -57,6 +58,55 @@ function A09Immer() {
 
       return deep;
     })
+  }, []);
+
+
+  // immer
+  const changeNameImmer = useCallback((x) => {
+    setData((prev) => {
+      // produce(원본, (원본의 복사본) => { ... })
+      const newData = produce(prev, (draft) => {
+        draft.name = x;
+      })
+      return newData;
+    })
+  }, [])
+  const changeAddressImmer = useCallback((x) => {
+    setData((prev) => {
+      return produce(prev, (draft) => {
+        draft.info.address = x;
+      });
+    })
+  }, [])
+  const changeOneImmer = useCallback(() => {
+    setData((prev) => {
+      return produce(prev, (draft) => {
+        draft.info.etc.one = '간단하다...';
+      });
+    })
+  }, [])
+  const addArrayImmer = useCallback(() => {
+    const random = Math.floor(Math.random() * 100) + 1;
+
+    setData((prev) => {
+      return produce(prev, (draft) => {
+        draft.info.arr.push(random);
+      });
+    })
+  }, []);
+  const updateArrayImmer = useCallback((idx, value) => {
+    setData((prev) => {
+      return produce(prev, (draft) => {
+        draft.info.arr[idx] = value;
+      });
+    })
+  }, [])
+  const deleteArrayImmer = useCallback((idx) => {
+    setData((prev) => {
+      return produce(prev, (draft) => {
+        draft.info.arr.splice(idx, 1)
+      });
+    })
   }, [])
 
   return (
@@ -83,13 +133,13 @@ function A09Immer() {
         </div>
 
         <div>
-          <button>Name</button>
-          <button>Address</button>
-          <button>One</button>
+          <button onClick={(evt) => changeNameImmer('Eve')}>Name</button>
+          <button onClick={(evt) => changeAddressImmer('인천')}>Address</button>
+          <button onClick={changeOneImmer}>One</button>
 
-          <button>ADD</button>
-          <button>UPDATE</button>
-          <button>DELETE</button>
+          <button onClick={addArrayImmer}>ADD</button>
+          <button onClick={(evt) => updateArrayImmer(1, 2000)}>UPDATE</button>
+          <button onClick={(evt) => deleteArrayImmer(1)}>DELETE</button>
         </div>
       </div>
     </div>

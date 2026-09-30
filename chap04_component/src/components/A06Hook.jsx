@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/refs */
 /*
 React Hook 규칙
 최상위 레벨에서만 호출: Hook은 React 함수 컴포넌트나 커스텀 Hook의 최상위 레벨에서만 호출해야 한다.

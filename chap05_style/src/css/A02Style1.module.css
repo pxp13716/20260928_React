@@ -1,0 +1,12 @@
+.title {
+    background-color: gray;
+    color: aqua;
+    font-size: 24pt;
+    font-weight: bold;
+    padding: 20px;
+}
+
+/* :global이 붙어 지역 CSS가 아닌 Global CSS로 변경된다 */
+:global .innerColor {
+    color: orange;
+}

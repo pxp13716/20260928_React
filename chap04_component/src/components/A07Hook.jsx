@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/refs */
 import { useEffect, useRef } from "react";
 import { useForm } from './../hooks/useForm'
 import { useToday } from "../hooks/useToday";
