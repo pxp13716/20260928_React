@@ -1,0 +1,28 @@
+a {
+  text-decoration: none;
+  color: #2c3e50;
+  padding: 5px 5px;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+}
+
+/* 마우스 커서를 갖다 대었을 때의 트랜지션 인터랙션 */
+a:hover {
+  background-color: #f1f2f6;
+  color: #2980b9;
+}
+
+/* NavLink에 의해 경로가 완벽하게 일치했을 때 자동으로 들어오는 active 선택자 스타일링 !important */
+a.active {
+  color: #ffffff ;
+  background-color: #e74c3c;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(231, 76, 60, 0.4);
+}
+
+a.activeLink {
+  color: #ffffff !important;
+  background-color: #5bb804;
+  font-weight: bold;
+  box-shadow: 0 2px 5px rgba(231, 76, 60, 0.4);
+}

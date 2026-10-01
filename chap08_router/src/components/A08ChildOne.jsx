@@ -1,0 +1,19 @@
+import { useOutletContext } from "react-router"
+
+function ChildOne() {
+  // Outlet에서 전달한 값을 useOutletContext를 이용해 받아온다
+  const { count, increment } = useOutletContext();
+
+  return (
+    <div className="mb-3">
+      <h3>ONE</h3>
+
+      <div className="mb-3">
+        Count: {count}<br />
+        <button onClick={increment}> + </button>
+      </div>
+    </div>
+  )
+}
+
+export default ChildOne
