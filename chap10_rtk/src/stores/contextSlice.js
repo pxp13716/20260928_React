@@ -1,4 +1,4 @@
-import { createAsyncThunk, createSlice, isRejected } from "@reduxjs/toolkit";
+import { createAsyncThunk, createSlice, isAnyOf, isRejected } from "@reduxjs/toolkit";
 import * as api from '@api/contacts'
 
 const emptyContactList = { pageno: '', pagesize: '', totalcount: '', contacts: [] };
@@ -31,6 +31,28 @@ export const fetchContactAction = createAsyncThunk(
     }
   }
 )
+export const deleteContactAction = createAsyncThunk(
+  'contact/deleteContactAction',
+  async (no, { rejectWithValue }) => {
+    try {
+      const resp = await api.deleteContactAction(no);
+      return resp.data;
+    } catch (err) {
+      return rejectWithValue(err.message || '연락처를 조회할 수 없습니다')
+    }
+  }
+)
+export const addContactAction = createAsyncThunk(
+  'contact/addContactAction',
+  async (contact, { rejectWithValue }) => {
+    try {
+      const resp = await api.addContactAction(contact);
+      return resp.data;
+    } catch (err) {
+      return rejectWithValue(err.message || '연락처를 조회할 수 없습니다')
+    }
+  }
+)
 
 const contactSlice = createSlice({
   name: 'contact',
@@ -43,7 +65,7 @@ const contactSlice = createSlice({
   },
   reducers: {
     // action => { name: evt.target.name, value: evt.target.value }
-    changeContact: (state, action) => {
+    changeContactAction: (state, action) => {
       state.contact[action.payload.name] = action.payload.value
     }
   },
@@ -70,6 +92,7 @@ const contactSlice = createSlice({
       //   state.loading = false;
       //   state.error = action.payload;
       // })
+
       // contact
       .addCase(fetchContactAction.pending, (state) => {
         state.loading = true;
@@ -85,11 +108,37 @@ const contactSlice = createSlice({
       //   state.loading = false;
       //   state.error = action.payload;
       // })
+
+      // delete
+      .addCase(deleteContactAction.pending, (state) => {
+        state.loading = true;
+        state.error = null;       // 이전 에러 비우기
+        state.contact = emptyContact;
+        state.actionResult = emptyResult;
+      })
+
+      // .addCase(deleteContactAction.fulfilled, (state, action) => {
+      //   state.loading = false;
+      //   state.actionResult = action.payload;
+      // })
+
+      // 모든 reject를 처리한다. addCase보다 먼저 정의되면 에러
+      .addMatcher(
+        isAnyOf(
+          deleteContactAction.fulfilled,
+          addContactAction.fulfilled,
+        ), (state, action) => {
+          state.loading = false;
+          state.actionResult = action.payload;
+        })
+
+
+      // 모든 reject를 처리한다. addCase보다 먼저 정의되면 에러
       .addMatcher(isRejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
       })
   }
 })
-export const { changeContact } = contactSlice.actions;
+export const { changeContactAction } = contactSlice.actions;
 export default contactSlice.reducer;

@@ -6,10 +6,12 @@ import { DNA } from 'react-loader-spinner'
 import ContactItem from '@components/contact/ContactItem'
 import { fetchContactListAction } from '@stores/contextSlice'
 import { useEffect } from "react"
+import { useNavigate } from "react-router"
 
 const GetContactList = () => {
   const { contactList, loading, error } = useSelector((store) => store.contactStore);
   const dispatch = useDispatch();
+  const navigate = useNavigate();
 
   /*
     1. 상태값을 store로 부터 가져온다 
@@ -44,7 +46,7 @@ const GetContactList = () => {
 
       </div>
 
-      <button className="btn btn-outline-primary btn-sm">ADD</button>
+      <button className="btn btn-outline-primary btn-sm" onClick={() => navigate('/add')}>ADD</button>
     </div>
   )
 }
