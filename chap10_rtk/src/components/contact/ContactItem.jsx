@@ -1,16 +1,17 @@
 import React from 'react'
+import { Link } from 'react-router'
 
-function ContactItem() {
+function ContactItem({ contact }) {
   return (
     <tr>
-      <td></td>
+      <td>{contact.no}</td>
       <td>
-
+        <Link to={`/contact/${contact.no}`}>{contact.name}</Link>
       </td>
-      <td></td>
-      <td></td>
+      <td>{contact.tel}</td>
+      <td>{contact.address}</td>
       <td>
-
+        <img src={contact.photo} alt='photo' width="70" />
       </td>
     </tr>
   )

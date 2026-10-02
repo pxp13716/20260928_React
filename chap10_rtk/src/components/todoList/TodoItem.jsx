@@ -1,17 +1,22 @@
 import React from 'react';
+import { updateAction, deleteAction } from '@stores/todoSlice'
+import '@css/todos.css';
+import { useDispatch } from 'react-redux';
 
-function TodoItem(props) {
+function TodoItem({ todo }) {
+  const dispatch = useDispatch();
+
   return (
     <tr>
-      <td></td>
+      <td>{todo.id}</td>
       <td>
-        <span></span>
+        <span className={todo.done ? 'done' : undefined}>{todo.text}</span>
       </td>
       <td>
-        <button className="btn btn-primary">Complete</button>
+        <button className="btn btn-primary" onClick={() => dispatch(updateAction(todo.id))}>Complete</button>
       </td>
       <td>
-        <button className="btn btn-danger">Delete</button>
+        <button className="btn btn-danger" onClick={() => dispatch(deleteAction(todo.id))}>Delete</button>
       </td>
     </tr>
   );

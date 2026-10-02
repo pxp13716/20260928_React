@@ -4,6 +4,7 @@ import { useNavigate, useParams } from 'react-router'
 import Swal from 'sweetalert2'
 
 function Contact() {
+
   return (
     <div>
       <h3>Get Contact</h3>

@@ -1,6 +1,28 @@
 // https://www.npmjs.com/package/react-paginate
 
+import { useDispatch, useSelector } from "react-redux"
+import { DNA } from 'react-loader-spinner'
+
+import ContactItem from '@components/contact/ContactItem'
+import { fetchContactListAction } from '@stores/contextSlice'
+import { useEffect } from "react"
+
 const GetContactList = () => {
+  const { contactList, loading, error } = useSelector((store) => store.contactStore);
+  const dispatch = useDispatch();
+
+  /*
+    1. 상태값을 store로 부터 가져온다 
+    2. 가져온 상태값으로 View 완성
+    3. 상태를 변경하기 위해 Action 호출
+    4. 변경된 상태값 참조 => 화면 갱신
+  */
+  useEffect(() => {
+    dispatch(fetchContactListAction({ pageno: 1, pagesize: 5 }))
+  }, [dispatch])
+
+  if (loading) return <DNA></DNA>
+  if (error) return <h3>점검중... {error}</h3>
   return (
     <div>
       <table className="table">
@@ -14,7 +36,7 @@ const GetContactList = () => {
           </tr>
         </thead>
         <tbody>
-
+          {contactList.contacts.map((contact) => <ContactItem key={contact.no} contact={contact}></ContactItem>)}
         </tbody>
       </table>
 
