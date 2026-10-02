@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router'
 
 import App from './../App.jsx'
-import Axios from './../pages/Axios.jsx'
-import Home from './../pages/Home.jsx'
-import ContactList from './../pages/ContactList.jsx'
+import Axios from '@pages/Axios.jsx'
+import Home from '@pages/Home.jsx'
+import ContactList from '@pages/ContactList.jsx'
 import Contact from './../pages/Contact.jsx'
 import AddContact from './../pages/AddContact.jsx'
 import UpdateContact from './../pages/UpdateContact.jsx'

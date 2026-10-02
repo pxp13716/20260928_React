@@ -1,0 +1,55 @@
+/* 1. 전체 컨테이너 스타일 (중앙 정렬 및 여백) */
+.custom-pagination {
+  display: flex;
+  justify-content: center;
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  gap: 8px; /* 버튼 사이의 간격 */
+}
+
+/* 2. 각 아이템(li) 및 링크(a) 기본 스타일 */
+.custom-page-item {
+  display: display-block;
+}
+
+.custom-page-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border: 1px solid #e2e8f0;
+  border-radius: 6px;
+  color: #4a5568;
+  background-color: #ffffff;
+  text-decoration: none;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* 3. 마우스 오버(Hover) 효과 */
+.custom-page-link:hover {
+  background-color: #f7fafc;
+  border-color: #cbd5e1;
+  color: #1a202c;
+}
+
+/* 4. 활성화된 페이지 스타일 (현재 보고 있는 페이지) */
+/* li 태그에 .active가 붙었을 때, 그 안의 a 태그 스타일을 변경 */
+.custom-page-item.custom-active .custom-page-link {
+  background-color: #3182ce; /* 포인트 블루 색상 */
+  border-color: #3182ce;
+  color: #ffffff;
+}
+
+/* 5. 이전/다음/생략 버튼에 대한 미세 조정 (선택 사항) */
+.custom-break-link {
+  border: none; /* 생략 기호는 테두리를 제거 */
+  background: transparent;
+  cursor: default;
+}
+.custom-break-link:hover {
+  background: transparent;
+}
